@@ -16,11 +16,11 @@ const Header = () => {
 
       {/* small header */}
 
-      <div className="container bg-[#f1f1f1]  flex justify-between p-4 m-5">
+      <div className="container bg-[#dec4c4]  flex justify-between p-4 ">
 
         <div className='flex gap-2 items-center'>
 
-          <p >
+          <p className=''>
             About Us  ||
           </p>
 
@@ -61,7 +61,7 @@ const Header = () => {
 
         <nav className='bg-gray-400'>
 
-          <ul className="flex gap-8 px-10 py-4 font-semibold">
+          <ul className="flex gap-8 px-10  max-w-5xl font-semibold">
 
             {/* HOME */}
             <li className="hover:text-yellow-400 cursor-pointer">Home</li>
@@ -73,7 +73,7 @@ const Header = () => {
               {/* Mega Menu */}
               <div className="absolute left-0 top-full w-screen bg-[#111] text-white 
                           opacity-0 invisible group-hover:opacity-100 
-                          group-hover:visible transition-all duration-300 z-50 my-5 py-5">
+                          group-hover:visible transition-all duration-300 z-50  ">
 
                 <div className=" max-w-7xl mx-auto grid grid-cols-3 gap-2 px-8 
                 absolute left-0 top-full w-screen bg-[#111] text-white 
@@ -82,7 +82,7 @@ const Header = () => {
 
                   {/* Column 1 */}
                   <div>
-                    <h4 className="mb-4 m-10 font-bold">Shop Layout</h4>
+                    <h4 className="mb-4 font-bold">Shop Layout</h4>
                     <ul className="space-y-3 text-sm text-gray-300">
                       <li className="hover:text-white">Left Sidebar</li>
                       <li className="hover:text-white">Right Sidebar</li>
@@ -124,11 +124,179 @@ const Header = () => {
             {/* PRODUCTS */}
             <li className="relative group cursor-pointer flex items-center gap-1">
               Products <ChevronDown size={16} />
+
+              {/* Products Mega Menu */}
+              <div className="absolute left-0 top-full w-screen bg-[#111] text-white 
+                          opacity-0 invisible group-hover:opacity-100 
+                          group-hover:visible transition-all duration-300 z-50">
+
+                <div className="max-w-7xl mx-auto grid grid-cols-4 gap-6 px-8 py-5">
+
+                  {/* Column 1 - Product Types */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Product Types</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">Product Default</li>
+                      <li className="hover:text-white">Product Full Width</li>
+                      <li className="hover:text-white">Product Slider</li>
+                      <li className="hover:text-white">Product Bottom Thumbnails</li>
+                      <li className="hover:text-white">Product Left Thumbnails</li>
+                      <li className="hover:text-white">Product Right Thumbnails</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 2 - Product Views */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Product Views</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">Product Grid View</li>
+                      <li className="hover:text-white">Product Drawer Sidebar</li>
+                      <li className="hover:text-white">Product Tab Accordions</li>
+                      <li className="hover:text-white">Product Video</li>
+                      <li className="hover:text-white">Thumbnail Hover Zoom</li>
+                      <li className="hover:text-white">Product Grid 02 Columns</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 3 - Special Products */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Special Products</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">Product Pre Orders</li>
+                      <li className="hover:text-white">Product Countdown Timer</li>
+                      <li className="hover:text-white">Sale Products</li>
+                      <li className="hover:text-white">New Products</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 4 - Image */}
+                  <div className="flex justify-center">
+                    <img
+                      src="/images/shop-hover-img.webp"
+                      alt="Products Collection"
+                      className="rounded-lg shadow-lg w-32 h-auto"
+                    />
+                  </div>
+
+                </div>
+              </div>
             </li>
 
-            <li className="hover:text-yellow-400 cursor-pointer">Pages</li>
-            <li className="hover:text-yellow-400 cursor-pointer">Blogs</li>
-            <li className="hover:text-yellow-400 cursor-pointer">Features</li>
+            <li className="relative group cursor-pointer flex items-center gap-1">
+              Pages <ChevronDown size={16} />
+
+              {/* Pages Mega Menu */}
+              <div className="absolute left-0 top-full w-screen bg-[#111] text-white 
+                          opacity-0 invisible group-hover:opacity-100 
+                          group-hover:visible transition-all duration-300 z-50">
+
+                <div className="max-w-5xl mx-auto grid grid-cols-3 gap-2 px-3 py-5 items-start">
+
+                  {/* Column 1 - Info Pages */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Information</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">About Us</li>
+                      <li className="hover:text-white">Contact Us</li>
+                      <li className="hover:text-white">FAQs</li>
+                      <li className="hover:text-white">Terms And Conditions</li>
+                      <li className="hover:text-white">Privacy Policy</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 2 - Account & Shop */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Account & Shop</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">Login</li>
+                      <li className="hover:text-white">Register</li>
+                      <li className="hover:text-white">Cart</li>
+                      <li className="hover:text-white">Wishlist</li>
+                      <li className="hover:text-white">Checkout</li>
+                      <li className="hover:text-white">Error</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 3 - Image */}
+                  <div className="flex justify-center">
+                    <img
+                      src="/images/shop-hover-img.webp"
+                      alt="Pages Collection"
+                      className="rounded-lg shadow-lg w-32 h-auto"
+                    />
+                  </div>
+
+                </div>
+              </div>
+            </li>
+            <li className="relative group cursor-pointer flex items-center gap-1">
+              Blogs <ChevronDown size={16} />
+
+              {/* Blogs Mega Menu */}
+              <div className="absolute left-0 top-full  w-screen bg-[#111] text-white 
+                          opacity-0 invisible group-hover:opacity-100 
+                          group-hover:visible transition-all duration-300 z-50">
+
+                <div className="max-w-7xl mx-auto grid grid-cols-3 gap-6 px-8 py-5">
+
+                  {/* Column 1 - Blog Layouts */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Blog Layouts</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">Blog Standard</li>
+                      <li className="hover:text-white">Blog Grid</li>
+                      <li className="hover:text-white">Blog Left Sidebar</li>
+                      <li className="hover:text-white">Blog Right Sidebar</li>
+                      <li className="hover:text-white">Blog List View</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 2 - Blog Views */}
+                  <div>
+                    <h4 className="mb-4 font-bold">Blog Views</h4>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      <li className="hover:text-white">Blog Grid Mix</li>
+                      <li className="hover:text-white">Blog Full Width</li>
+                      <li className="hover:text-white">Blog Without Sidebar</li>
+                      <li className="hover:text-white">Single Post With Sidebar</li>
+                      <li className="hover:text-white">Single Post Without Sidebar</li>
+                    </ul>
+                  </div>
+
+                  {/* Column 3 - Featured Post */}
+                  <div className="bg-gray-800 p-4 rounded-lg">
+                    <img
+                      src="/images/blog-img.webp"
+                      alt="Blog Post"
+                      className="rounded-lg w-full h-24 object-cover mb-3"
+                    />
+                    <p className="text-xs text-gray-400 mb-2">By: admin | 2 comments</p>
+                    <h5 className="text-sm font-semibold text-white">Tips to buy any sneaker...</h5>
+                  </div>
+
+                </div>
+              </div>
+            </li>
+
+            <li className="relative group cursor-pointer flex items-center gap-1">
+              Features <ChevronDown size={16} />
+
+              {/* Features Dropdown */}
+              <div className="absolute left-0 top-full bg-[#111] text-white 
+                          opacity-0 invisible group-hover:opacity-100 
+                          group-hover:visible transition-all duration-300 z-50 min-w-48">
+
+                <div className="px-6 py-5">
+                  <ul className="space-y-3 text-sm text-gray-300">
+                    <li className="hover:text-white">Portfolio</li>
+                    <li className="hover:text-white">Track My Order</li>
+                    <li className="hover:text-white">Advanced Filter</li>
+                    <li className="hover:text-white">Load More Button</li>
+                  </ul>
+                </div>
+
+              </div>
+            </li>
           </ul>
 
         </nav>

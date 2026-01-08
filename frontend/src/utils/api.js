@@ -53,4 +53,10 @@ export const productAPI = {
   deleteProduct: (id) => api.delete(`/products/${id}`)
 };
 
+// Image API functions
+export const imageAPI = {
+  // Get image URL
+  getImageUrl: (imagePath) => imagePath ? `http://localhost:5000/${imagePath}` : null
+};
+
 export default api;

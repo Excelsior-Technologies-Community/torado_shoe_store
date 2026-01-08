@@ -123,6 +123,16 @@ export const getProducts = async (req, res) => {
       [...params, parseInt(limit), (parseInt(page) - 1) * parseInt(limit)]
     );
 
+    // Get images for each product
+    for (let product of products) {
+      const [images] = await pool.query(
+        "SELECT image_url, is_primary FROM product_images WHERE product_id = ? ORDER BY is_primary DESC, sort_order ASC",
+        [product.id]
+      );
+      product.images = images;
+      product.primaryImage = images.find(img => img.is_primary) || images[0] || null;
+    }
+
     // Get total count for pagination
     const [countResult] = await pool.query(
       `SELECT COUNT(DISTINCT p.id) as total

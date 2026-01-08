@@ -3,6 +3,7 @@
 
 # But don't ignore these directories
 !frontend/
+!newfrontend/
 !backend/
 
 # Don't ignore .gitignore itself

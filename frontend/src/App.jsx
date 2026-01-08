@@ -8,11 +8,15 @@ import Homepage from './pages/Homepage'
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+
+      {/* <Header /> */}
+
       <Routes>
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/' element={<Homepage />} />
       </Routes>
+
+      
     </BrowserRouter>
   )
 }
