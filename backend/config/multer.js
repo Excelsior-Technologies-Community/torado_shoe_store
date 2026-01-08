@@ -50,3 +50,9 @@ export const uploadTeamImage = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter,
 });
+
+export const uploadTestimonialImage = multer({
+  storage: storage("testimonials"),
+  limits: { fileSize: 2 * 1024 * 1024 },
+  fileFilter,
+});

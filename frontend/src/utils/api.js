@@ -30,33 +30,53 @@ api.interceptors.response.use(
 
 // Product API functions
 export const productAPI = {
-  // Get filter options
-  getFilterOptions: () => api.get('/products/filters'),
-  
-  // Get all products with filters
-  getProducts: (params = {}) => api.get('/products', { params }),
-  
-  // Get single product by ID
+  getFilterOptions: () => api.get("/products/filters"),
+
+  getProducts: (params = {}) => api.get("/products", { params }),
+
   getProductById: (id) => api.get(`/products/${id}`),
-  
-  // Create new product
-  createProduct: (formData) => api.post('/products', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  }),
-  
-  // Update product
-  updateProduct: (id, formData) => api.put(`/products/${id}`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  }),
-  
-  // Delete product
-  deleteProduct: (id) => api.delete(`/products/${id}`)
+
+  createProduct: (formData) =>
+    api.post("/products", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+
+  updateProduct: (id, formData) =>
+    api.put(`/products/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+
+  deleteProduct: (id) => api.delete(`/products/${id}`),
 };
 
-// Image API functions
+// Image for products
 export const imageAPI = {
   // Get image URL
-  getImageUrl: (imagePath) => imagePath ? `http://localhost:5000/${imagePath}` : null
+  getImageUrl: (imagePath) =>
+    imagePath ? `http://localhost:5000/${imagePath}` : null,
+};
+
+export const testimonialsAPI = {
+  getTestimonials: (params = {}) => api.get("/testimonials", { params }),
+
+  getTestimonialById: (id) => api.get(`/testimonials/${id}`),
+
+  createTestimonial: (formData) =>
+    api.post("/testimonials", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+
+  updateTestimonial: (id, formData) =>
+    api.put(`/testimonials/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+
+  updateTestimonialStatus: (id, status) =>
+    api.patch(`/testimonials/${id}/status`, { status }),
+
+  toggleFeatured: (id) => api.patch(`/testimonials/${id}/featured`),
+
+  deleteTestimonial: (id) => api.delete(`/testimonials/${id}`),
 };
 
 export default api;
