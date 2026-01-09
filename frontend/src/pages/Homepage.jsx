@@ -6,10 +6,12 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { RiShoppingBag2Fill } from "react-icons/ri";
 import ProductSwiper from '../components/products/ProductSwiper'
-import { productAPI, imageAPI, testimonialsAPI } from '../utils/api'
+import { productAPI, imageAPI, testimonialsAPI, TestimonialImageAPi } from '../utils/api'
 import { FaArrowRight, FaRegEye } from 'react-icons/fa'
 import { IoMdSwap, IoMdStar } from 'react-icons/io'
 import { IoIosHeartEmpty } from 'react-icons/io'
+import BrandSwiper from '../components/BrandSwiper'
+import InstaSwiper from '../components/InstaSwiper'
 
 
 
@@ -33,8 +35,6 @@ function Homepage() {
         const fetchTestimonials = async () => {
             const response = await testimonialsAPI.getTestimonials();
             setTestimonials(response.data.testimonials)
-            console.log(response.data);
-
         }
         fetchTestimonials();
         fetchProducts();
@@ -46,7 +46,7 @@ function Homepage() {
             <div className=''>
 
 
-
+                {/* Banner */}
                 <div>
 
                     <div className='w-full [&_.swiper-button-next]:p-2 [&_.swiper-button-prev]:p-2 [&_.swiper-button-next]:bg-black/20 [&_.swiper-button-prev]:bg-black/20 [&_.swiper-button-next]:w-8 [&_.swiper-button-prev]:w-8 [&_.swiper-button-next]:h-8 [&_.swiper-button-prev]:h-8 [&_.swiper-button-next:after]:text-sm [&_.swiper-button-prev:after]:text-sm
@@ -178,13 +178,47 @@ function Homepage() {
 
                 </div>
 
+                {/* Collection Images */}
                 <div className='mt-10'>
 
                     <div className=' lg:mx-10 grid lg:grid-cols-3 lg:gap-10 my-5'>
-                        <img src="/images/collection-img-1.webp" alt="" className='' />
-                        <img src="/images/collection-img-2.webp" alt="" className='' />
-                        <img src="/images/collection-img-3.webp" alt="" className='' />
+                        <div className='relative'>
+                            <img src="/images/collection-img-1.webp" alt="" className='' />
+                            <div className='absolute right-5 bottom-5'>
+                                <p className='text-center text-lg font-semibold '
 
+                                >
+                                    Men's
+                                    <br />
+                                    Collection</p>
+
+                            </div>
+                        </div>
+                        <div className='relative'>
+                            <img src="/images/collection-img-2.webp" alt="" className='' />
+                            <div className='absolute right-5 bottom-5'>
+                                <p className='text-center text-lg font-semibold '
+
+                                >
+                                    Women's
+                                    <br />
+                                    Collection</p>
+
+                            </div>
+                        </div>
+                        <div className='relative'>
+                            <img src="/images/collection-img-3.webp" alt="" className='' />
+                            <div className='absolute right-5 bottom-5'>
+                                <p className='text-center text-lg font-semibold '
+
+                                >
+                                    Kid's
+                                    <br />
+                                    Collection</p>
+
+                            </div>
+
+                        </div>
                     </div>
 
 
@@ -283,7 +317,7 @@ function Homepage() {
                         {products && Array.isArray(products) && products.map((product, index) => {
                             if (product) {
                                 return (
-                                    <div key={product.id || index} className='p-2'>
+                                    <div key={product.id || index} className='p-2  border-2 shadow-lg border-black'>
                                         <div className='relative group overflow-hidden'>
                                             <img
                                                 src={imageAPI.getImageUrl(product.primaryImage?.image_url)}
@@ -399,22 +433,33 @@ function Homepage() {
                                 className='w-full h-full'>
                                 {testimonials.map((testimonial, index) => (
                                     <SwiperSlide key={index}>
+
                                         <div className='flex bg-white flex-col items-center justify-center h-full p-8 rounded-lg shadow-lg mx-4'>
                                             <div className='text-center max-w-md'>
                                                 <p className='text-lg mb-6 italic'>
                                                     "{testimonial.message}"
                                                 </p>
                                                 <div className='flex items-center justify-center gap-4'>
-                                                    <img src={testimonial.image || "No Image"}
-                                                        className='w-12 h-12 rounded-full object-cover' />
-                                                    <div className='text-left'>
-                                                        <p className='font-semibold text-lg'>
-                                                            {testimonial.name}
-                                                        </p>
-                                                        <p className='text-gray-500'>
-                                                            {testimonial.designation || 'Customer'}
-                                                        </p>
+                                                    <div>
+                                                        <img src={testimonial.image ? `http://localhost:5000/${testimonial.image}` : "/images/placeholder.jpg"}
+                                                            alt={testimonial.name}
+                                                            className='w-12 h-12 rounded-full object-cover' />
                                                     </div>
+                                                    <div className='text-left flex items-center gap-4'>
+                                                        <div>
+                                                            <p className='font-semibold text-lg'>
+                                                                {testimonial.name}
+                                                            </p>
+                                                            <p className='text-gray-500'>
+                                                                {testimonial.designation || 'Customer'}
+                                                            </p>
+                                                        </div>
+                                                        <div>
+                                                            <img src="/images/quote-svg.png" alt="" className='' />
+                                                        </div>
+                                                    </div>
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -422,6 +467,18 @@ function Homepage() {
                                 ))}
                             </Swiper>
                         </div>
+                    </div>
+                </div>
+
+
+
+                <div className=''>
+                    <div>
+                        <BrandSwiper />
+                    </div>
+                    <div>
+
+                        <InstaSwiper />
                     </div>
                 </div>
 

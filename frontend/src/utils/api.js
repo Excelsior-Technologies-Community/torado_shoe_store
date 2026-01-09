@@ -79,4 +79,9 @@ export const testimonialsAPI = {
   deleteTestimonial: (id) => api.delete(`/testimonials/${id}`),
 };
 
+export const TestimonialImageAPi = {
+  getTestimonialImage: (imagePath) =>
+    imagePath ? `http://localhost:5000/${imagePath}` : null,
+};
+
 export default api;

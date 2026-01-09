@@ -1,9 +1,11 @@
+import { imageAPI, productAPI } from "../../utils/api";
+
 const ProductCard = ({ product }) => {
   return (
     <div className="border rounded p-4 hover:shadow-md">
-      <img 
-        src={product.image_url || '/placeholder.jpg'} 
-        alt={product.name}
+      <img
+        src={imageAPI.getImageUrl(product.primaryImage?.image_url) || 'null'}
+        alt="Failed To Load Image"
         className="w-full h-48 object-cover rounded mb-3"
       />
       <h3 className="font-semibold mb-2">{product.name}</h3>

@@ -24,13 +24,15 @@ const storage = (folder) => {
 };
 
 const fileFilter = (req, file, cb) => {
-  const allowed = /jpeg|jpg|png|webp|gif|JPG|JPEG|PNG|GIF|WEBP /;
-  const ext = allowed.test(path.extname(file.originalname).toLowerCase());
+  const allowed = /\.(jpeg|jpg|png|webp|gif)$/i;
+  const ext = allowed.test(file.originalname);
+  const mime = /^image\/(jpeg|jpg|png|webp|gif)$/i.test(file.mimetype);
 
-  const mime = allowed.test(file.mimetype);
-
-  if (ext && mime) cb(null, true);
-  else cb(new Error("Only images are allowed"));
+  if (ext && mime) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only images are allowed"));
+  }
 };
 
 export const uploadProductImages = multer({
