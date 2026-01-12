@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage'
 import Footer from './components/Footer'
 import WishlistPage from './pages/WhishlistPage'
 import Breadcrumb from './components/Breadcrumb'
+import Blog from './pages/Blog'
 
 function App() {
   return (
@@ -19,9 +20,11 @@ function App() {
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/' element={<Homepage />} />
         <Route path='/wishlist' element={<WishlistPage />} />
+        <Route path='/blogs' element={<Blog />} />
+
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
 
     </BrowserRouter>
   )

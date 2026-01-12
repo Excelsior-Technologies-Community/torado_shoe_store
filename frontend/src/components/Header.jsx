@@ -499,10 +499,10 @@ const Header = () => {
                 <div>
                   <h4 className="mb-4 font-bold">Blog Layouts</h4>
                   <ul className="space-y-3 text-sm text-gray-300">
-                    <li className="hover:text-white">Blog Standard</li>
-                    <li className="hover:text-white">Blog Grid</li>
-                    <li className="hover:text-white">Blog Left Sidebar</li>
-                    <li className="hover:text-white">Blog Right Sidebar</li>
+                    <Link to="/blogs?layout=standard" className="block hover:text-white">Blog Standard</Link>
+                    <Link to="/blogs?layout=grid" className="block hover:text-white">Blog Grid</Link>
+                    <Link to="/blogs?layout=left" className="block hover:text-white">Blog Left Sidebar</Link>
+                    <Link to="/blogs?layout=right" className="block hover:text-white">Blog Right Sidebar</Link>
                   </ul>
                 </div>
 

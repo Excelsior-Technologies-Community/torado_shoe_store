@@ -84,4 +84,47 @@ export const TestimonialImageAPi = {
     imagePath ? `http://localhost:5000/${imagePath}` : null,
 };
 
+export const blogsAPI = {
+  // Blog CRUD
+  getBlogs: (params = {}) => api.get("/blogs", { params }),
+  getPublishedBlogs: (params = {}) => api.get("/blogs/published", { params }),
+  getBlogById: (id) => api.get(`/blogs/${id}`),
+  getBlogBySlug: (slug) => api.get(`/blogs/slug/${slug}`),
+
+  createBlog: (formData) =>
+    api.post("/blogs", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+
+  createBlogJSON: (data) => api.post("/blogs/json", data),
+
+  updateBlog: (id, formData) =>
+    api.put(`/blogs/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+
+  updateBlogJSON: (id, data) => api.put(`/blogs/${id}/json`, data),
+
+  deleteBlog: (id) => api.delete(`/blogs/${id}`),
+
+  // Blog Images
+  getBlogImages: (id) => api.get(`/blogs/${id}/images`),
+  addBlogImage: (id, data) => api.post(`/blogs/${id}/images`, data),
+  uploadBlogImage: (id, formData) =>
+    api.post(`/blogs/${id}/upload-image`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+  deleteBlogImage: (blogId, imageId) =>
+    api.delete(`/blogs/${blogId}/images/${imageId}`),
+
+  // Blog Comments
+  getBlogComments: (id) => api.get(`/blogs/${id}/comments`),
+  getAllComments: (id) => api.get(`/blogs/${id}/all-comments`),
+  addComment: (id, data) => api.post(`/blogs/${id}/comments`, data),
+  updateCommentStatus: (blogId, commentId, status) =>
+    api.put(`/blogs/${blogId}/comments/${commentId}`, { status }),
+  deleteComment: (blogId, commentId) =>
+    api.delete(`/blogs/${blogId}/comments/${commentId}`),
+};
+
 export default api;
