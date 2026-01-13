@@ -8,6 +8,8 @@ import Footer from './components/Footer'
 import WishlistPage from './pages/WhishlistPage'
 import Breadcrumb from './components/Breadcrumb'
 import Blog from './pages/Blog'
+import ExampleProductDisplay from './components/products/ExampleProductDisplay'
+import ProductSingle from './components/products/ProductSingle'
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
 
       <Routes>
         <Route path='/products' element={<ProductsPage />} />
+        <Route path='/products/:id' element={<ProductSingle />} />
         <Route path='/' element={<Homepage />} />
         <Route path='/wishlist' element={<WishlistPage />} />
         <Route path='/blogs' element={<Blog />} />

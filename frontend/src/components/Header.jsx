@@ -343,7 +343,11 @@ const Header = () => {
       <nav className="bg-black relative">
         <ul className="max-w-7xl mx-auto flex gap-8 px-6 py-4 text-white font-semibold">
 
-          <li className="hover:text-yellow-400 cursor-pointer">Home</li>
+          <li className="hover:text-yellow-400 cursor-pointer">
+            <Link to={"/"}>
+              Home
+            </Link>
+          </li>
 
           {/* SHOP */}
           <li className="group cursor-pointer flex items-center gap-1">
@@ -407,11 +411,20 @@ const Header = () => {
 
                 <div>
                   <h4 className="mb-4 font-bold">Product Types</h4>
-                  <ul className="space-y-3 text-sm text-gray-300">
-                    <li>Product Default</li>
-                    <li>Product Slider</li>
-                    <li>Product Gallery</li>
-                  </ul>
+                  <div className="space-y-3 text-sm text-gray-300">
+                    <Link to="/products?layout=left" className="block hover:text-white">
+                      Left Sidebar
+                    </Link>
+                    <Link to="/products?layout=right" className="block hover:text-white">
+                      Right Sidebar
+                    </Link>
+                    <Link to="/products?layout=grid" className="block hover:text-white">
+                      Grid View
+                    </Link>
+                    <Link to="/products?layout=gallery" className="block hover:text-white">
+                      Gallery (Grid View)
+                    </Link>
+                  </div>
                 </div>
 
                 <div>

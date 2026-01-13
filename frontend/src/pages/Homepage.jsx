@@ -7,11 +7,14 @@ import 'swiper/css/pagination'
 import { RiShoppingBag2Fill } from "react-icons/ri";
 import ProductSwiper from '../components/products/ProductSwiper'
 import { productAPI, imageAPI, testimonialsAPI, TestimonialImageAPi } from '../utils/api'
-import { FaArrowRight, FaRegEye } from 'react-icons/fa'
-import { IoMdSwap, IoMdStar } from 'react-icons/io'
-import { IoIosHeartEmpty } from 'react-icons/io'
+import { FaArrowRight } from 'react-icons/fa'
+import { IoMdStar } from 'react-icons/io'
 import BrandSwiper from '../components/BrandSwiper'
 import InstaSwiper from '../components/InstaSwiper'
+import ProductActions from '../components/products/ProductActions.jsx'
+import useProductActions from '../hooks/useProductActions.js'
+import CompareModal from '../components/products/CompareModel.jsx'
+import OpenModel from '../components/products/OpenModel.jsx'
 
 
 
@@ -22,6 +25,23 @@ function Homepage() {
 
     const [products, setProducts] = useState([])
     const [testimonials, setTestimonials] = useState([])
+    
+    const {
+        compareList,
+        isCompareOpen,
+        setIsCompareOpen,
+        showAddProducts,
+        setShowAddProducts,
+        wishlist,
+        isOpenModelOpen,
+        setIsOpenModelOpen,
+        selectedProduct,
+        toggleWishlist,
+        handleAddToCompare,
+        handleRemoveFromCompare,
+        handleAddMoreProducts,
+        handleOpenModel
+    } = useProductActions();
 
 
     useEffect(() => {
@@ -316,20 +336,22 @@ function Homepage() {
 
                         {products && Array.isArray(products) && products.map((product, index) => {
                             if (product) {
+                                const isWishlisted = wishlist.includes(product.id);
                                 return (
                                     <div key={product.id || index} className='p-2  border-2 shadow-lg border-black'>
                                         <div className='relative group overflow-hidden'>
                                             <img
                                                 src={imageAPI.getImageUrl(product.primaryImage?.image_url)}
-
                                                 alt={product.name}
                                                 className='w-full h-48 object-cover'
                                             />
-                                            <div className='absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-20'>
-                                                <IoMdSwap className='bg-white text-black rounded-full text-xl p-1 hover:bg-gray-200 cursor-pointer' />
-                                                <IoIosHeartEmpty className='bg-white text-black rounded-full text-xl p-1 hover:bg-gray-200 cursor-pointer' />
-                                                <FaRegEye className='bg-white text-black rounded-full text-xl p-1 hover:bg-gray-200 cursor-pointer' />
-                                            </div>
+                                            <ProductActions
+                                                product={product}
+                                                isWishlisted={isWishlisted}
+                                                onToggleWishlist={toggleWishlist}
+                                                onAddToCompare={handleAddToCompare}
+                                                onOpenQuickView={handleOpenModel}
+                                            />
                                         </div>
                                         <div className='mt-2'>
                                             <h3 className='text-sm text-black'>{product.name}</h3>
@@ -515,6 +537,24 @@ function Homepage() {
 
 
             </div>
+            
+            <CompareModal
+                isOpen={isCompareOpen}
+                onClose={() => setIsCompareOpen(false)}
+                productsToCompare={compareList}
+                onRemove={handleRemoveFromCompare}
+                onAddMore={handleAddMoreProducts}
+                showAddProducts={showAddProducts}
+                onCloseAddProducts={() => setShowAddProducts(false)}
+                allProducts={products}
+                onAddToCompare={handleAddToCompare}
+            />
+            
+            <OpenModel
+                isOpen={isOpenModelOpen}
+                onClose={() => setIsOpenModelOpen(false)}
+                product={selectedProduct}
+            />
         </>
     )
 }

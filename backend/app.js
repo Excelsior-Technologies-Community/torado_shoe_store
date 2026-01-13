@@ -6,6 +6,7 @@ import contactroute from "./routes/contactroute.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 import testimonialRoutes from "./routes/testimonialRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js"
+import reviewRoutes from "./routes/reviewRoutes.js"
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/testimonials", testimonialRoutes);
 app.use("/api/blogs", blogRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 export default app;

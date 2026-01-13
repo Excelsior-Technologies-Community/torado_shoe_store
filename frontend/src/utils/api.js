@@ -84,6 +84,12 @@ export const TestimonialImageAPi = {
     imagePath ? `http://localhost:5000/${imagePath}` : null,
 };
 
+export const reviewAPI = {
+  createReview: (data) => api.post("/reviews", data),
+  getProductReviews: (productId, params = {}) => api.get(`/reviews/product/${productId}`, { params }),
+  approveReview: (id) => api.patch(`/reviews/${id}/approve`),
+};
+
 export const blogsAPI = {
   // Blog CRUD
   getBlogs: (params = {}) => api.get("/blogs", { params }),
