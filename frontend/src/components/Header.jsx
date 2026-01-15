@@ -311,6 +311,9 @@
 
 import { Link } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
+import { FaRegHeart, FaRegUser } from 'react-icons/fa'
+import { LuShoppingBag } from "react-icons/lu";
+
 
 const Header = () => {
   return (
@@ -340,7 +343,7 @@ const Header = () => {
       </div>
 
       {/* MAIN NAV */}
-      <nav className="bg-black relative">
+      <nav className="bg-black relative flex items-center gap-5 px-20">
         <ul className="max-w-7xl mx-auto flex gap-8 px-6 py-4 text-white font-semibold">
 
           <li className="hover:text-yellow-400 cursor-pointer">
@@ -552,9 +555,22 @@ const Header = () => {
 
               <div className="px-6 py-5">
                 <ul className="space-y-3 text-sm text-gray-300">
-                  <li className="hover:text-white">Portfolio</li>
-                  <li className="hover:text-white">Track My Order</li>
-                  <li className="hover:text-white">Advanced Filter</li>
+                  <li className="hover:text-white">
+                    <Link to="/portfolio">
+                      Portfolio
+                    </Link>
+                  </li>
+                  <li className="hover:text-white">
+                    <Link to="trackmyorder">
+                      Track My Order
+                    </Link>
+                  </li>
+                  <li className="hover:text-white">
+                    <Link to="/products">
+                      Advanced Filter
+                    </Link>
+                  </li>
+
                   <li className="hover:text-white">Load More Button</li>
                 </ul>
               </div>
@@ -563,6 +579,32 @@ const Header = () => {
           </li>
 
         </ul>
+
+
+        <div>
+
+          <img src="/images/nav_logo.svg" alt="" />
+
+
+
+
+        </div>
+
+        <div className='flex gap-4 items-center ml-auto '>
+          <input type="text" placeholder='Search Here'
+            className='bg-black p-1 text-white border border-white rounded-lg' />
+
+          <div className='flex items-center gap-4'>
+            <Link to="/wishlist">
+              <FaRegHeart className='text-white ' />
+            </Link>
+            <LuShoppingBag className='text-white' />
+            <FaRegUser className='text-white' />
+          </div>
+
+
+        </div>
+
       </nav>
 
     </header>

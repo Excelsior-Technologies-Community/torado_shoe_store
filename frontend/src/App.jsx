@@ -10,6 +10,8 @@ import Breadcrumb from './components/Breadcrumb'
 import Blog from './pages/Blog'
 import ExampleProductDisplay from './components/products/ExampleProductDisplay'
 import ProductSingle from './components/products/ProductSingle'
+import Portfolio from './pages/Portfolio'
+import TrackMyOrder from './pages/TrackMyOrder'
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path='/' element={<Homepage />} />
         <Route path='/wishlist' element={<WishlistPage />} />
         <Route path='/blogs' element={<Blog />} />
+        <Route path='/portfolio' element={<Portfolio />} />
+        <Route path='/trackmyorder' element={<TrackMyOrder />} />
 
       </Routes>
 
