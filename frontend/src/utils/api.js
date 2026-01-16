@@ -28,6 +28,29 @@ api.interceptors.response.use(
   }
 );
 
+//user apis
+export const authAPI = {
+  register: (userData) => api.post("/users/register", userData),
+  login: (credentials) => api.post("/users/login", credentials),
+};
+
+//team member apis
+export const TeamMemberAPI = {
+  getTeamMembers: (params = {}) => api.get("/team-members", { params }),
+  getTeamMemberById: (id) => api.get(`/team-members/${id}`),
+  createTeamMember: (formData) =>
+    api.post("/team-members", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+  updateTeamMember: (id, formData) =>
+    api.put(`/team-members/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+  updateTeamMemberStatus: (id, status) =>
+    api.patch(`/team-members/${id}/status`, { status }),
+  deleteTeamMember: (id) => api.delete(`/team-members/${id}`),
+};
+
 // Product API functions
 export const productAPI = {
   getFilterOptions: () => api.get("/products/filters"),
@@ -86,7 +109,8 @@ export const TestimonialImageAPi = {
 
 export const reviewAPI = {
   createReview: (data) => api.post("/reviews", data),
-  getProductReviews: (productId, params = {}) => api.get(`/reviews/product/${productId}`, { params }),
+  getProductReviews: (productId, params = {}) =>
+    api.get(`/reviews/product/${productId}`, { params }),
   approveReview: (id) => api.patch(`/reviews/${id}/approve`),
 };
 
@@ -131,6 +155,22 @@ export const blogsAPI = {
     api.put(`/blogs/${blogId}/comments/${commentId}`, { status }),
   deleteComment: (blogId, commentId) =>
     api.delete(`/blogs/${blogId}/comments/${commentId}`),
+};
+
+export const faqAPI = {
+  // Categories
+  getCategories: () => api.get("/faqs/categories"),
+  createCategory: (data) => api.post("/faqs/categories", data),
+  updateCategory: (id, data) => api.put(`/faqs/categories/${id}`, data),
+  deleteCategory: (id) => api.delete(`/faqs/categories/${id}`),
+
+  // FAQs
+  getFaqs: () => api.get("/faqs"),
+  getFaqsByCategory: (categoryId) => api.get(`/faqs/category/${categoryId}`),
+  getFaqById: (id) => api.get(`/faqs/${id}`),
+  createFaq: (data) => api.post("/faqs", data),
+  updateFaq: (id, data) => api.put(`/faqs/${id}`, data),
+  deleteFaq: (id) => api.delete(`/faqs/${id}`),
 };
 
 export default api;

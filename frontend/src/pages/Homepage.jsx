@@ -15,6 +15,7 @@ import ProductActions from '../components/products/ProductActions.jsx'
 import useProductActions from '../hooks/useProductActions.js'
 import CompareModal from '../components/products/CompareModel.jsx'
 import OpenModel from '../components/products/OpenModel.jsx'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -22,10 +23,12 @@ import OpenModel from '../components/products/OpenModel.jsx'
 
 function Homepage() {
 
+    const navigate = useNavigate()
+
 
     const [products, setProducts] = useState([])
     const [testimonials, setTestimonials] = useState([])
-    
+
     const {
         compareList,
         isCompareOpen,
@@ -42,6 +45,25 @@ function Homepage() {
         handleAddMoreProducts,
         handleOpenModel
     } = useProductActions();
+
+    const handleAddToCart = (product) => {
+        const cartItems = JSON.parse(localStorage.getItem('product') || '[]');
+        const existingItem = cartItems.find(item => item.id === product.id);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cartItems.push({
+                id: product.id,
+                name: product.name,
+                image: imageAPI.getImageUrl(product.primaryImage?.image_url),
+                price: product.price,
+                quantity: 1
+            });
+        }
+
+        localStorage.setItem('product', JSON.stringify(cartItems));
+    };
 
 
     useEffect(() => {
@@ -245,73 +267,95 @@ function Homepage() {
 
                 </div>
 
+                <div className='mx-20 py-10'>
+
+                    <div>
+                        <p className='text-xl font-semibold'>
+                            Expore Best Sellers
+                        </p>
+                    </div>
+                    <div>
+                        <ProductSwiper />
+
+                    </div>
+                </div>
+
                 <div>
 
-                    <ProductSwiper />
+                    <div className=''>
+                        <p className='text-3xl text-center font-semibold'>
+                            You can always use our sneakers for comfort.
+                            <br />
+                            The sneakers look good and the price is affordable
+                        </p>
+                    </div>
 
-                </div>
+                    <div className='grid lg:grid-cols-2 justify-items-center  m-10'>
 
-                <div className='grid lg:grid-cols-2 justify-items-center  m-10'>
 
-                    <div className="bg-[url('images/arrival-img-1.webp')] bg-contain  lg:h-[350px] lg:w-[500px] flex items-center">
+                        <div className="bg-[url('images/arrival-img-1.webp')] bg-contain  lg:h-[350px] lg:w-[500px] flex items-center">
 
-                        <div className='absolute gap-5 mx-5 m-2'>
+                            <div className='absolute gap-5 mx-5 m-2'>
 
-                            <p className='text-xl font-semibold'>
-                                New Arrival
-                            </p>
+                                <p className='text-xl font-semibold'>
+                                    New Arrival
+                                </p>
 
-                            <h4 className='text-2xl font-extrabold'>
-                                Fashion shoe
-                            </h4>
+                                <h4 className='text-2xl font-extrabold'>
+                                    Fashion shoe
+                                </h4>
 
-                            <p className='text-red-400 '>
-                                50% OFF ON Every PURCHASE
-                            </p>
+                                <p className='text-red-400 '>
+                                    50% OFF ON Every PURCHASE
+                                </p>
 
-                            <button
-                                className='bg-black text-white p-2 flex items-center gap-4 mt-3'>
-                                Shop Now <RiShoppingBag2Fill />
+                                <button
+                                    onClick={() => { navigate("/products") }}
+                                    className='bg-black text-white p-2 flex items-center gap-4 mt-3'>
+                                    Shop Now <RiShoppingBag2Fill />
 
-                            </button>
+                                </button>
+
+                            </div>
 
                         </div>
 
-                    </div>
+                        <div className="bg-[url('images/arrival-img-2.webp')] bg-contain  lg:h-[350px] lg:w-[500px] flex items-center">
 
-                    <div className="bg-[url('images/arrival-img-2.webp')] bg-contain  lg:h-[350px] lg:w-[500px] flex items-center">
+                            <div className='absolute gap-5 mx-5 m-2'>
 
-                        <div className='absolute gap-5 mx-5 m-2'>
+                                <p className='text-xl font-semibold'>
+                                    New Collection
+                                </p>
 
-                            <p className='text-xl font-semibold'>
-                                New Collection
-                            </p>
+                                <h4 className='text-2xl font-extrabold'>
+                                    Sneakers
+                                </h4>
 
-                            <h4 className='text-2xl font-extrabold'>
-                                Sneakers
-                            </h4>
+                                <p className='text-red-400 '>
+                                    Sale upto 60%
+                                </p>
 
-                            <p className='text-red-400 '>
-                                Sale upto 60%
-                            </p>
+                                <button
+                                    onClick={() => { navigate("/products") }}
+                                    className='bg-black text-white p-2 flex items-center gap-4 mt-3'>
+                                    Shop Now <RiShoppingBag2Fill />
 
-                            <button
-                                className='bg-black text-white p-2 flex items-center gap-4 mt-3'>
-                                Shop Now <RiShoppingBag2Fill />
+                                </button>
 
-                            </button>
+                            </div>
+
+
 
                         </div>
 
 
 
+
                     </div>
 
 
-
-
                 </div>
-
 
                 <div>
 
@@ -322,7 +366,9 @@ function Homepage() {
                             </div>
 
                             <div className='ml-auto'>
-                                <button className='flex items-center '>
+                                <button
+                                    onClick={() => { navigate("/products") }}
+                                    className='flex items-center '>
                                     Explore More <FaArrowRight />
                                 </button>
 
@@ -332,7 +378,7 @@ function Homepage() {
                     </div>
 
 
-                    <div className='grid lg:grid-cols-4 gap-5 mx-10 mt-5'>
+                    <div className='grid lg:grid-cols-4 gap-5 mx-10 my-10'>
 
                         {products && Array.isArray(products) && products.map((product, index) => {
                             if (product) {
@@ -368,7 +414,7 @@ function Homepage() {
                                                 <IoMdStar className='text-black' />
                                                 <IoMdStar className='text-black' />
                                             </div>
-                                            <button className='bg-black text-white p-2 flex items-center gap-2 mt-2 w-full justify-center'>
+                                            <button onClick={() => handleAddToCart(product)} className='bg-black text-white p-2 flex items-center gap-2 mt-2 w-full justify-center'>
                                                 Shop Now <RiShoppingBag2Fill />
                                             </button>
                                         </div>
@@ -383,7 +429,7 @@ function Homepage() {
 
                 </div>
 
-                <div className="bg-[url('/images/shop-bg-1.webp')] bg-cover bg-center h-96 flex items-center justify-center">
+                <div className="bg-[url('/images/shop-bg-1.webp')] bg-cover bg-center h-96 flex items-center justify-center my-20">
 
                     <div className='text-center text-black'>
                         <p className='text-lg font-semibold'>
@@ -397,7 +443,9 @@ function Homepage() {
                         <p className='text-lg text-red-400 mb-4'>
                             Modern Style Only This Week
                         </p>
-                        <button className='bg-black text-white px-6 py-3 flex items-center gap-2 mx-auto'>
+                        <button
+                            onClick={() => { navigate("/products") }}
+                            className='bg-black text-white px-6 py-3 flex items-center gap-2 mx-auto'>
                             Shop Now <RiShoppingBag2Fill />
                         </button>
 
@@ -406,16 +454,21 @@ function Homepage() {
                 </div>
 
 
-                <div>
-                    <div className='mx-10'>
-                        <div className='flex  items-center'>
+                <div className='mx-10'>
+
+                    <div className='mx-10 my-10'>
+                        <div className='flex  items-center '>
                             <div>
-                                <p className='text-xl font-semibold'>Explore New  Arrivals</p>
+                                <p className='text-2xl font-semibold '>
+                                    Explore New  Arrivals
+                                </p>
                             </div>
 
                             <div className='ml-auto'>
-                                <button className='flex items-center '>
-                                    Explore More <FaArrowRight />
+                                <button
+                                    onClick={() => { navigate("/products") }}
+                                    className='flex items-center text-2xl '>
+                                    Explore More <FaArrowRight className='text-xl!' />
                                 </button>
 
                             </div>
@@ -436,7 +489,8 @@ function Homepage() {
 
                 </div>
 
-                <div className='my-10 bg-gray-100'>
+                {/* testimonial */}
+                <div className='my-10 '>
                     <div className='text-center py-8'>
                         <h2 className='text-3xl font-bold'>Our customer says about Torado</h2>
                     </div>
@@ -445,6 +499,7 @@ function Homepage() {
                         <div className='w-1/2'>
                             <img src="/images/testimonial-1.webp" alt="" className='h-96 w-full object-cover rounded-l-lg' />
                         </div>
+
 
                         <div className='absolute right-40 top-1/2 transform -translate-y-1/2 w-1/2 flex items-center justify-center z-10'>
                             <Swiper
@@ -496,6 +551,9 @@ function Homepage() {
 
                 <div className=''>
                     <div>
+                        <p className='text-center font-semibold text-xl'>
+                            Our Top Brands
+                        </p>
                         <BrandSwiper />
                     </div>
                     <div>
@@ -537,7 +595,7 @@ function Homepage() {
 
 
             </div>
-            
+
             <CompareModal
                 isOpen={isCompareOpen}
                 onClose={() => setIsCompareOpen(false)}
@@ -549,7 +607,7 @@ function Homepage() {
                 allProducts={products}
                 onAddToCompare={handleAddToCompare}
             />
-            
+
             <OpenModel
                 isOpen={isOpenModelOpen}
                 onClose={() => setIsOpenModelOpen(false)}

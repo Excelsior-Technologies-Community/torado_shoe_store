@@ -25,6 +25,25 @@ const ProductCard = ({ product }) => {
 
   const isWishlisted = wishlist.includes(product.id);
 
+  const handleAddToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem('product') || '[]');
+    const existingItem = cartItems.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cartItems.push({
+        id: product.id,
+        name: product.name,
+        image: imageAPI.getImageUrl(product.primaryImage?.image_url),
+        price: product.price,
+        quantity: 1
+      });
+    }
+    
+    localStorage.setItem('product', JSON.stringify(cartItems));
+  };
+
   return (
     <>
       <div className="border rounded p-4 hover:shadow-md relative group">
@@ -55,7 +74,7 @@ const ProductCard = ({ product }) => {
               </span>
             )}
           </div>
-          <button className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+          <button onClick={handleAddToCart} className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
             Add to Cart
           </button>
         </div>

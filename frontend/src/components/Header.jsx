@@ -343,8 +343,8 @@ const Header = () => {
       </div>
 
       {/* MAIN NAV */}
-      <nav className="bg-black relative flex items-center gap-5 px-20">
-        <ul className="max-w-7xl mx-auto flex gap-8 px-6 py-4 text-white font-semibold">
+      <nav className="bg-black relative flex items-center gap-2 px-5">
+        <ul className="max-w-7xl mx-auto flex gap-8  py-4 text-white font-semibold">
 
           <li className="hover:text-yellow-400 cursor-pointer">
             <Link to={"/"}>
@@ -483,10 +483,23 @@ const Header = () => {
                 <div>
                   <h4 className="mb-4 font-bold">Other Pages</h4>
                   <ul className="space-y-3 text-sm text-gray-300">
-                    <li className="hover:text-white">About</li>
+                    <li className="hover:text-white">
+                      <Link to="/aboutus">
+                        About
+                      </Link>
+                    </li>
                     <li className="hover:text-white">Contact</li>
-                    <li className="hover:text-white">FAQ</li>
+                    <li className="hover:text-white">
+                      <Link to="/faqs">
+                        FAQ
+                      </Link>
+                    </li>
                     <li className="hover:text-white">Error</li>
+                    <li className="hover:text-white">
+                      <Link to="/termandconditions">
+                        T&C
+                      </Link>
+                    </li>
                   </ul>
                 </div>
 
@@ -598,7 +611,9 @@ const Header = () => {
             <Link to="/wishlist">
               <FaRegHeart className='text-white ' />
             </Link>
-            <LuShoppingBag className='text-white' />
+            <Link to="/cart">
+              <LuShoppingBag className='text-white' />
+            </Link>
             <FaRegUser className='text-white' />
           </div>
 

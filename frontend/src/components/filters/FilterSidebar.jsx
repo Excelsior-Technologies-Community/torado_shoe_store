@@ -39,10 +39,10 @@ const FilterSidebar = () => {
     };
 
     return (
-        <aside className="w-64 bg-white p-4 rounded border">
+        <aside className="w-64 bg-white p-4 rounded border sticky top-0 self-start">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="font-semibold">Filters</h3>
-                <button 
+                <button
                     onClick={clearFilters}
                     className="text-sm text-blue-600 hover:underline"
                 >
@@ -67,9 +67,8 @@ const FilterSidebar = () => {
                 {filters.categories.map(cat => (
                     <button
                         key={cat.slug}
-                        className={`block w-full text-left p-1 hover:bg-gray-100 ${
-                            searchParams.get('category') === cat.slug ? 'text-blue-600' : ''
-                        }`}
+                        className={`block w-full text-left p-1 hover:bg-gray-100 ${searchParams.get('category') === cat.slug ? 'text-blue-600' : ''
+                            }`}
                         onClick={() => updateParam('category', searchParams.get('category') === cat.slug ? null : cat.slug)}
                     >
                         {cat.name}
@@ -83,9 +82,8 @@ const FilterSidebar = () => {
                 {filters.brands.map(brand => (
                     <button
                         key={brand.slug}
-                        className={`block w-full text-left p-1 hover:bg-gray-100 ${
-                            searchParams.get('brand') === brand.slug ? 'text-blue-600' : ''
-                        }`}
+                        className={`block w-full text-left p-1 hover:bg-gray-100 ${searchParams.get('brand') === brand.slug ? 'text-blue-600' : ''
+                            }`}
                         onClick={() => updateParam('brand', searchParams.get('brand') === brand.slug ? null : brand.slug)}
                     >
                         {brand.name}
@@ -100,9 +98,8 @@ const FilterSidebar = () => {
                     {filters.sizes.map(size => (
                         <button
                             key={size}
-                            className={`px-2 py-1 border rounded text-sm ${
-                                searchParams.get('size') === size ? 'bg-blue-600 text-white' : 'hover:bg-gray-100'
-                            }`}
+                            className={`px-2 py-1 border rounded text-sm ${searchParams.get('size') === size ? 'bg-blue-600 text-white' : 'hover:bg-gray-100'
+                                }`}
                             onClick={() => updateParam('size', searchParams.get('size') === size ? null : size)}
                         >
                             {size}
@@ -118,9 +115,8 @@ const FilterSidebar = () => {
                     {filters.colors.map(color => (
                         <button
                             key={color}
-                            className={`px-2 py-1 border rounded text-sm ${
-                                searchParams.get('color') === color ? 'bg-blue-600 text-white' : 'hover:bg-gray-100'
-                            }`}
+                            className={`px-2 py-1 border rounded text-sm ${searchParams.get('color') === color ? 'bg-blue-600 text-white' : 'hover:bg-gray-100'
+                                }`}
                             onClick={() => updateParam('color', searchParams.get('color') === color ? null : color)}
                         >
                             {color}
